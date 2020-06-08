@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+See Live [Corona Tracker](https://corona-tracker-f32fe.web.app/) to view it in the browser.
+
 ## Available Scripts
 
 In the project directory, you can run:
