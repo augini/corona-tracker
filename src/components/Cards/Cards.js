@@ -19,7 +19,7 @@ const Cards = ({ data: {confirmed, deaths, recovered, lastUpdate} }) => {
             </Typography>
 
             <Typography variant = 'h5'>
-              <CountUp start = {0} end = {confirmed.value} duration = {2.75} seperator = ',' ></CountUp>
+              <CountUp start = {0} end = {confirmed.value} duration = {2.75} separator = ',' ></CountUp>
             </Typography>
 
             <Typography color = 'textSecondary'> {new Date(lastUpdate).toDateString()} </Typography>

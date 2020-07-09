@@ -7,10 +7,12 @@ import CoronaImage from './images/image.png'
 
 class App extends Component {
   state = {
-    data: ''
+    data: ' '
   }
-   async componentDidMount(){
+
+  async componentDidMount(){
     const data = await FetchData()
+    console.log(data);
     this.setState({
       data: data
     })
@@ -30,7 +32,6 @@ class App extends Component {
 
   render() { 
     const {data} =  this.state
-    console.log(data)
     return ( 
       <div className = {styles.container}>
         <Cards data = {data} />
