@@ -1,45 +1,35 @@
-import React, {Component} from 'react'
-import styles from './App.module.css'
-import {Cards, Chart, CountryPicker} from './components/'
-import { FetchData } from './api'
-import CoronaImage from './images/image.png'
+import React, { useState, useEffect } from "react";
+import styles from "./App.module.css";
+import { Cards, Chart, CountryPicker } from "./components/";
+import { FetchData } from "./api";
 
+const App = () => {
+  const [data, setData] = useState("");
+  const [country, setCountry] = useState("");
 
-class App extends Component {
-  state = {
-    data: ' '
-  }
+  useEffect(() => {
+    FetchData().then((data) => {
+      setData(data);
+    });
+  }, []);
 
-  async componentDidMount(){
-    const data = await FetchData()
-    console.log(data);
-    this.setState({
-      data: data
-    })
-  }
-
-  handleChange  = async (country) => {
+  const handleChange = async (country) => {
     //fetch the data
-    const data = await FetchData(country)
-    this.setState({
-      data: data,
-      country: country
-    })
+    const data = await FetchData(country);
+    setData(data);
+    setCountry(country);
+
     //set the state
-    console.log(country)
-  }
+    console.log(country);
+  };
 
+  return (
+    <div className={styles.container}>
+      <Cards data={data} />
+      <CountryPicker handleChange={handleChange} />
+      <Chart data={data} country={country} />
+    </div>
+  );
+};
 
-  render() { 
-    const {data} =  this.state
-    return ( 
-      <div className = {styles.container}>
-        <Cards data = {data} />
-        <CountryPicker handleChange = {this.handleChange} />
-        <Chart data = {this.state.data} country = {this.state.country} />
-      </div>
-     );
-  }
-}
- 
 export default App;
