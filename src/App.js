@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./App.module.css";
 import { Cards, Chart, CountryPicker } from "./components/";
 import { FetchData } from "./api";
+import ThemeContextProvider from "./context/ThemeContext";
 
 const App = () => {
   const [data, setData] = useState("");
@@ -25,9 +26,11 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      <Cards data={data} />
-      <CountryPicker handleChange={handleChange} />
-      <Chart data={data} country={country} />
+      <ThemeContextProvider>
+        <Cards data={data} />
+        <CountryPicker handleChange={handleChange} />
+        <Chart data={data} country={country} />
+      </ThemeContextProvider>
     </div>
   );
 };
